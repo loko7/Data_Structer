@@ -1,3 +1,5 @@
+// Alongkot Nokjun 6620501541
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -21,7 +23,7 @@ typedef struct
     int capacity;
 } MinHeap;
 
-MinHeap *createMinHeap(int capacity)
+MinHeap *createheap(int capacity)
 {
     MinHeap *minHeap = (MinHeap *)malloc(sizeof(MinHeap));
     minHeap->capacity = capacity;
@@ -46,7 +48,7 @@ void swap(MinHeapNode **a, MinHeapNode **b)
     *b = temp;
 }
 
-void insertMinHeap(MinHeap *minHeap, MinHeapNode *node)
+void insertheap(MinHeap *minHeap, MinHeapNode *node)
 {
 
     minHeap->array[minHeap->size] = node;
@@ -99,7 +101,7 @@ MinHeapNode *buildHuffmanTree(MinHeap *minHeap)
         newNode->left = left;
         newNode->right = right;
 
-        insertMinHeap(minHeap, newNode);
+        insertheap(minHeap, newNode);
     }
     return extractMin(minHeap);
 }
@@ -150,20 +152,6 @@ void displayMinHeap(MinHeap *minHeap)
     }
 }
 
-// Build min-heap
-for (int i = n / 2 - 1; i >= 0; i--)
-    heapify(arr, n, i);
-
-// One by one extract elements from the heap
-for (int i = n - 1; i > 0; i--)
-{
-    // Move the current smallest element (root) to the end
-    swap(&arr[0], &arr[i]);
-
-    // Call heapify on the reduced heap
-    heapify(arr, i, 0);
-}
-}
 int main()
 {
     char text[1000];
@@ -182,13 +170,13 @@ int main()
     }
 
     printf("Frequency table of %d characters:\n", num_char);
-    MinHeap *minHeap = createMinHeap(size_c);
+    MinHeap *minHeap = createheap(size_c);
     for (int i = 0; i < size_c; i++)
     {
         if (frequency[i] > 0)
         {
             printf("'%c': %d ", i, frequency[i]);
-            insertMinHeap(minHeap, createNode(i, frequency[i]));
+            insertheap(minHeap, createNode(i, frequency[i]));
         }
     }
 
