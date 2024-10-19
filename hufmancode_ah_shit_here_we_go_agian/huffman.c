@@ -150,6 +150,20 @@ void displayMinHeap(MinHeap *minHeap)
     }
 }
 
+// Build min-heap
+for (int i = n / 2 - 1; i >= 0; i--)
+    heapify(arr, n, i);
+
+// One by one extract elements from the heap
+for (int i = n - 1; i > 0; i--)
+{
+    // Move the current smallest element (root) to the end
+    swap(&arr[0], &arr[i]);
+
+    // Call heapify on the reduced heap
+    heapify(arr, i, 0);
+}
+}
 int main()
 {
     char text[1000];
